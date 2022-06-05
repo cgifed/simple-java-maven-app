@@ -28,9 +28,9 @@ jobs:
         run: |
           curl ${{ env.URL }} \
             -H "Authorization: Bearer ${{ secrets.PACKAGES_SECRET }}" \
-            - L \
-            - O
+            -L \
+            -O
         env:
-          URL: https://maven.pkg.github.com/cgifed/simple-java-maven-app/com/mycompany/app/my-app/1.0-SNAPSHOT/my-app-1.0-SNAPSHOT.jar
+          URL: "https://maven.pkg.github.com/cgifed/simple-java-maven-app/com/mycompany/app/my-app/1.0-SNAPSHOT/my-app-1.0-SNAPSHOT.jar"
       - name: Verify
         run: ls -latr
