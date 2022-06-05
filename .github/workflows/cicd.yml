@@ -33,4 +33,5 @@ jobs:
         env:
           URL: "https://maven.pkg.github.com/cgifed/simple-java-maven-app/com/mycompany/app/my-app/1.0-SNAPSHOT/my-app-1.0-SNAPSHOT.jar"
       - name: Verify
+      - name: Checking the path
         run: ls -latr
