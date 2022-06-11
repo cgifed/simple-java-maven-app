@@ -1,0 +1,38 @@
+name: Deployment
+on:
+  workflow_dispatch:
+    inputs:
+      stack:
+        type: choice
+        description: "Select Environment to Deploy"
+        required: true
+        options:
+          - Development
+          - Production
+      filename:
+        type: string
+        description: "Provide the package to deploy"
+        required: true
+        default: "my-app-1.0-SNAPSHOT.jar"
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: "${{ inputs.stack }}"
+    steps:
+      - name: Download the Packages
+        run: |
+          curl ${{ env.URL }} \
+            -H "Authorization: Bearer ${{ secrets.PACKAGES_SECRET }}" \
+            -L \
+            -O
+        env:
+          URL: "https://maven.pkg.github.com/cgifed/simple-java-maven-app/com/mycompany/app/my-app/1.0-SNAPSHOT/${{ inputs.filename }}"
+      - name: Deploying to Dev
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: "22"
+          source: "${{ inputs.filename }}"
+          target: "/tmp"
