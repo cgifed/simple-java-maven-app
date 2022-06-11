@@ -1,0 +1,14 @@
+name: Using of output of a step
+on:
+  push
+
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Getting PIP
+        id: pip
+        uses: haythem/public-ip@v1.2
+      - name: Printing Public IP
+        run: |
+          echo "${{ steps.pip.outputs.ipv4 }}"
