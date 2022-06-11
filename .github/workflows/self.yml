@@ -6,5 +6,7 @@ jobs:
   testing-self-hosted-runner:
     runs-on: maven
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Printing the hostname
         run: hostname
