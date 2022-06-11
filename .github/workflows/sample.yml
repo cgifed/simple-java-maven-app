@@ -13,7 +13,7 @@ jobs:
         run: |
           echo "${{ steps.pip.outputs.ipv4 }}"
       - name: Print the softwares
-        run:
+        run: |
           printenv
           ls -l /usr/bin/
         
