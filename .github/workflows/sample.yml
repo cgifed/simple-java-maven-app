@@ -12,3 +12,8 @@ jobs:
       - name: Printing Public IP
         run: |
           echo "${{ steps.pip.outputs.ipv4 }}"
+      - name: Print the softwares
+        run:
+          printenv
+          ls -l /usr/bin/
+        
