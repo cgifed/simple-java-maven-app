@@ -1,6 +1,6 @@
 name: Maven CICD
 on:
-  push:
+  # push:
   workflow_dispatch:
 jobs:
   CI:
