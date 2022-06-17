@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 jobs:
   CI:
-    runs-on: 'maven'
+    runs-on: 'ubuntu-latest'
     steps:
       - name: checkout
         uses: actions/checkout@v3
