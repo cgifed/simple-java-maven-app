@@ -1,0 +1,27 @@
+name: Creating Terraform Resources
+on:
+  workflow_dispatch:  
+
+jobs:
+  terraform:
+    runs-on: "ubuntu-latest"
+    env:
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+    steps:
+      - name: checkout the code
+        uses: actions/checkout@v3
+
+      - name: terraform login
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 0.14.6
+
+      - name: Provisioning the resources
+        run: |
+          cd terraform
+          terraform init
+          terraform apply -var-file ${{ env.TF_VAR_FILE }} --auto-approve
+
