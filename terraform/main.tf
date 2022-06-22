@@ -13,6 +13,14 @@ provider "azurerm" {
   skip_provider_registration = true
 }
 
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "github-actions-demo"
+    storage_account_name = "jithinghademo"
+    container_name       = "terraform-states"
+  }
+}
+
 data "azurerm_resource_group" "main" {
   name = var.resource_group
 }
